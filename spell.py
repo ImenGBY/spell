@@ -209,7 +209,7 @@ class Spell:
 
         # get abstraction
         abstraction_id = 0
-        for abstraction_str, log_ids in abstraction_temp.iteritems():
+        for abstraction_str, log_ids in abstraction_temp.items():
             self.abstractions[abstraction_id] = {
                 'abstraction': abstraction_str,
                 'log_id': log_ids
@@ -254,7 +254,7 @@ class Spell:
         count = 0
         for idx, line in self.df_log.iterrows():
             logID = line['LineId']
-            logmessageL = filter(lambda x: x != '', re.split(r'[\s=:,]', self.preprocess(line['Content'])))
+            logmessageL = [x for x in filter(lambda x: x != '', re.split(r'[\s=:,]', self.preprocess(line['Content'])))]
             constLogMessL = [w for w in logmessageL if w != '*']
 
             # Find an existing matched log cluster
